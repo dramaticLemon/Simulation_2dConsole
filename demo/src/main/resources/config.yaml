@@ -1,0 +1,10 @@
+map:
+  width: 10
+  heigth: 10
+
+entity_count:
+  HERBIVORE: 1
+  ROCK: 15
+  TREE: 15
+  GRASS: 3
+  PREDATOR: 1
