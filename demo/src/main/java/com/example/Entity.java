@@ -1,16 +1,18 @@
 package com.example;
 
+import com.example.world_map.Node;
+
 public abstract class Entity {
     private Node currentNode;
 
 
     // привязка
-    void attachToNode(Node node) {
+    public void attachToNode(Node node) {
         this.currentNode = node;
     };
 
     // отвязка
-    void detachNode() {
+    public void detachNode() {
         this.currentNode = null;
     }
 
