@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.Random;
 
 import com.example.Creatures;
+import com.example.conf.Config;
+import com.example.conf.ConfigService;
 import com.example.conf.TypeObject;
 import com.example.manage.MapObjectManager;
 import com.example.world_map.Node;
@@ -13,8 +15,28 @@ import com.example.world_map.Search;
 import com.example.world_map.WordMap;
 
 public class Herbivore extends Creatures{
+    private final static Config config = ConfigService.get().getConfig(); 
     WordMap map = WordMap.getInstance();
     MapObjectManager mapObjectManager = new MapObjectManager();
+    boolean alived = true;
+
+    public Herbivore() {
+        this.HP = config.getEntityChar().herbivore_hp;
+    }
+
+    public boolean isAlive() {
+        return this.alived;
+    }
+
+    @Override
+    public void changeHP(int value) {
+        if (this.HP < 1) {
+            this.alived = false;
+            mapObjectManager.removeEntity(this);
+            return;
+        }
+        this.HP -= value;
+    }
 
     @Override
     public void makeMove () {
@@ -47,8 +69,8 @@ public class Herbivore extends Creatures{
 
             Random random = new Random();
             Node nextNode = validMoves.get(random.nextInt(validMoves.size()));
-            System.out.println("Rundom move");
             mapObjectManager.moveEntity(this, nextNode);
         }
     }
+
 }

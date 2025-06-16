@@ -1,4 +1,4 @@
-package com.example.action.spawn;
+package com.example.action.spawn.base;
 
 import com.example.Entity;
 import com.example.world_map.WordMap;

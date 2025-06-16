@@ -2,10 +2,10 @@ package com.example.conf;
 
 public enum TypeObject {
     ROCK("🗿"),
-    GRASS("💵"),
+    GRASS("🌱"),
     TREE("\uD83C\uDF33"),
-    HERBIVORE("🏃"),
-    PREDATOR("👮"),
+    HERBIVORE("🐷"),
+    PREDATOR("🦊"),
     EMPTY(" ");
 
     private final String symbol;

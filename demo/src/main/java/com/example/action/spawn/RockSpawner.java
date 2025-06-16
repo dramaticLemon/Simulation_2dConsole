@@ -3,6 +3,8 @@ package com.example.action.spawn;
 import java.util.function.Predicate;
 
 import com.example.Entity;
+import com.example.action.spawn.base.EntitySpawner;
+import com.example.action.spawn.base.SpawnEngine;
 import com.example.action.spawn.spawn_rules.Standart;
 import com.example.conf.Config;
 import com.example.entity.Rock;

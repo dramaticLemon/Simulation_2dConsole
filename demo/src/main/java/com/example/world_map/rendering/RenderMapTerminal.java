@@ -1,14 +1,16 @@
-package com.example.world_map;
+package com.example.world_map.rendering;
 
 import com.example.conf.Config;
 import com.example.conf.ConfigService;
+import com.example.world_map.Node;
+import com.example.world_map.WordMap;
 
-public class RenderMap implements Render{
+public class RenderMapTerminal implements Render{
     private final WordMap map = WordMap.getInstance(); // sigletone
     private final Config config = ConfigService.get().getConfig(); //singleton
 
     @Override
-    public void render() {
+    public void renderMap() {
         Node[][] nodes = map.getNodesMap();
         int cellWidth = 5;
 

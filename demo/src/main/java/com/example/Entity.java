@@ -5,7 +5,6 @@ import com.example.world_map.Node;
 public abstract class Entity {
     private Node currentNode;
 
-
     // привязка
     public void attachToNode(Node node) {
         this.currentNode = node;

@@ -3,6 +3,8 @@ package com.example.action.turn;
 import com.example.Creatures;
 import com.example.manage.EntityManager;
 
+
+// передвинуть все обьекты которые могут ходить
 public class MoveAction {
     private final EntityManager entityManager;
 

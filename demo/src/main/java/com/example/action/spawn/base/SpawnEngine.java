@@ -1,4 +1,4 @@
-package com.example.action.spawn;
+package com.example.action.spawn.base;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
