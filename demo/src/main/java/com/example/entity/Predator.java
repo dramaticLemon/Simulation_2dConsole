@@ -46,9 +46,7 @@ public class Predator extends Creatures{
     }
     
     private void makeOneStep() {
-        // получить список всех соседних клеток
         List<Node> possibleMoves = map.getNeighbors(getCurrentNode());
-        // получить кратчайший маршрут до указанной клетки карты
         Optional<List<Node>> nearestHerbivoreOption = Search.findPath(TypeObject.HERBIVORE, getCurrentNode(), map, TypeObject.PREDATOR);
         if (nearestHerbivoreOption.isPresent()) {
             Node stepToTarget = nearestHerbivoreOption.get().getFirst();

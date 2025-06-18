@@ -4,13 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.LogRecord;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.example.Main;
 import com.example.conf.Config;
 import com.example.conf.ConfigService;
 import com.example.conf.TypeObject;
 
 public class  WordMap {
-    // содержить в колекцию для хранения существ и их расположенияq
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
     private final int width;
     private final int height;
     private static WordMap instanse;
@@ -29,7 +34,7 @@ public class  WordMap {
 
     public static WordMap getInstance() {
         if (instanse == null) {
-            System.out.println("Call MAP INNIT");
+            logger.info("Call MAP INNIT");
             instanse = new WordMap(config.getMapConfig().width, config.getMapConfig().heigth);
         }
         return instanse;
@@ -40,7 +45,7 @@ public class  WordMap {
             for (int j = 0; j < width; j++) {
                 Node node = new Node(i, j);
                 nodes[i][j] = node;
-                emptyNodes.add(node); // добавить пустую ноду в список пустых нод
+                emptyNodes.add(node);
                 adjList.put(node, new ArrayList<>());
             }
         }
@@ -71,40 +76,43 @@ public class  WordMap {
         return x >= 0 && x < this.width && y >= 0 && y < height;
     }
 
-    // получить соседей
     public List<Node> getNeighbors(Node node) {
         return adjList.getOrDefault(node, new ArrayList<>());
     }
-    // получить Node по координатам
+
     public Node getNodeAt(int x, int y) {
         if (isValidCoordinate(x, y)) {
             return nodes[y][x];
         }
+        logger.error("Trying to get Node with invalid coordinates: {}, {}", x, y);
         throw new IndexOutOfBoundsException("Invalid coordinate: " + x + ", " + y);
     }
-    // проверка что клетка пустая
+
     public boolean isEmptyNode(Node node) {
         return node.getType().equals(TypeObject.EMPTY);
     }
-    // получить двумерный массив с нодами
+
     public Node[][] getNodesMap() {
         return this.nodes;
     }
     
-    // получить рандомную клетку
+
     public Node getRundomNode() {
         if (emptyNodes.isEmpty()) {
+            logger.error("not find empty nodes");
             throw new IllegalStateException("Нет пустых node");
         }
         Random random = new Random();
         return emptyNodes.get(random.nextInt(emptyNodes.size()));
     }
-
-    // поменять тип ноды но не меняем привязку к клетке обьекта
-    // для изменения списка пустых клеток
+    /**
+     * change type node but not change bind node->Class object
+     * @param node
+     * @param newType
+     */
     public void setNodeType(Node node, TypeObject newType) {
-        TypeObject oldType = node.getType(); // cохранить старый тип куска карты
-        node.setType(newType); // поменять тип куска карты на новый
+        TypeObject oldType = node.getType(); // save ols type node map
+        node.setType(newType); // change type node map
         if (oldType == TypeObject.EMPTY && newType != TypeObject.EMPTY) {
             emptyNodes.remove(node);
         } else if (oldType != TypeObject.EMPTY && newType == TypeObject.EMPTY) {

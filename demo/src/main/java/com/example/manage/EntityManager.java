@@ -11,10 +11,8 @@ import com.example.Entity;
 
 
 /**
- * работает с колекциями обьектов 
- * добавляет
- *          удаляет
- *                  выдает
+ * Collections class objecrs 
+ * add objects, delete and get
  */
 public class EntityManager {
     private static EntityManager instance;
@@ -43,13 +41,6 @@ public class EntityManager {
     
     public <T extends Entity> long getSize(Class<T> needClass) {
         return getEntities(needClass).size();
-    }
-
-
-    // TODO удалить
-    @Override
-    public String toString() {
-        return "EntityManager [allEntitiesObjects=" + allEntitiesObjects + "]";
     }
 
     public Set<Creatures> getAllCreatures() {

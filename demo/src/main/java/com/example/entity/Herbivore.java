@@ -44,24 +44,18 @@ public class Herbivore extends Creatures{
     }
 
     private void makeOneStep() {
-        // получить список всех соседних клеток
         List<Node> possibleMoves = map.getNeighbors(getCurrentNode());
-        // получить кратчайший маршрут до указанной клетки карты
         Optional<List<Node>> nearestGrassOption = Search.findPath(TypeObject.GRASS, getCurrentNode(), map, TypeObject.HERBIVORE);
         if (nearestGrassOption.isPresent()) {
             Node stepToTarget = nearestGrassOption.get().getFirst();
-           // Проверяем, что клетка либо EMPTY, либо GRASS
             if (stepToTarget.getType().equals(TypeObject.GRASS) || stepToTarget.getType().equals(TypeObject.EMPTY)) {
-                // Если клетка содержит траву, удаляем её
                 if (stepToTarget.getType().equals(TypeObject.GRASS)) {
                     mapObjectManager.removeEntity(stepToTarget.getObjectLink());
                 }
-                // Перемещаем Herbivore на клетку
                 mapObjectManager.moveEntity(this, stepToTarget);
                 return;
             }
         }
-
         List<Node> validMoves = new ArrayList<>();
 
         for (Node neighbor: possibleMoves) {

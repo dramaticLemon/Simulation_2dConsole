@@ -16,7 +16,7 @@ import com.example.world_map.WordMap;
 
 
 /**
- * работает с обьектами и клетками карты (привязывает, отвязывает обьекты, пермещает)
+ * Bind Class objects and Map node
  */
 public class MapObjectManager {
     private final WordMap map = WordMap.getInstance();
@@ -39,44 +39,34 @@ public class MapObjectManager {
     };
 
     public void bindObjectToNode(Entity obj, Node initrialNode) {
-        // связь клетку карты и обьекта
         initrialNode.setObjectLink(obj);
-        // изменение типа обьекта в клетке карты
         TypeObject type = getTypeByClass.apply(obj.getClass());
         map.setNodeType(initrialNode, type);
-        // добавить обьект в массив обектов
         entityManager.addEntity(obj);
-        obj.attachToNode(initrialNode); // привязать обьект к клетке карты
+        obj.attachToNode(initrialNode);
     }
 
-    /**
-     * Удалить объект с карты
-     */
     @SuppressWarnings("unchecked")
     public void removeEntity(Entity obj) {
         Node node = obj.getCurrentNode();
         if (node != null) {
-            node.setObjectLink(null); // удалить ссылку на обьект
-            map.setNodeType(node, TypeObject.EMPTY);  // поменять тип на пустой
+            node.setObjectLink(null); // delete lint on object
+            map.setNodeType(node, TypeObject.EMPTY);  // change type to null
         }
-        // удалить обьект из коллекции
+        // delete obj in object collections
         entityManager.deleteObject((Class<Entity>) obj.getClass(), obj);
-        obj.detachNode(); // отвязать обьект от клетки карты
+        obj.detachNode();
     }
 
-    /**
-     * Переместить объект в другую клетку
-     */
     public void moveEntity(Entity obj, Node newNode) {
-        Node current = obj.getCurrentNode(); // текущая клетка под обьектов
+        Node current = obj.getCurrentNode();
         if (current != null) {
-            current.setObjectLink(null); // Обновить старую клетку сбросить ссылку
-            map.setNodeType(current, TypeObject.EMPTY); // обновить старую клетку сбросить тип
+            current.setObjectLink(null);
+            map.setNodeType(current, TypeObject.EMPTY);
         }
-        newNode.setObjectLink(obj); // поменять ссылку с null на обьект который стал на клетку
+        newNode.setObjectLink(obj);
         TypeObject type = getTypeByClass.apply(obj.getClass());
-        map.setNodeType(newNode, type); // меняем тип новой клетки в соотв с обьектом который стоит на ней
-        // меняем связь текущей ноды в обьекте с клеткой
+        map.setNodeType(newNode, type);
         obj.attachToNode(newNode); 
     }
 }

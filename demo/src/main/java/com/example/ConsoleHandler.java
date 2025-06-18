@@ -30,14 +30,14 @@ public class ConsoleHandler implements Runnable{
     }
 
     private void printHelp() {
-        System.out.println("""
-                    Доступные команды:
-                    1 - Установить задержку 500мс
-                    2 - Установить задержку 1000мс
-                    3 - Установить задержку 2000мс
-                    p - Пауза (остановить симуляцию)
-                    f - Завершить симуляцию
-                    h - Показать эту справку
-                    """);
+    System.out.println("""
+            Available commands:
+            1 - Set delay to 500ms
+            2 - Set delay to 1000ms
+            3 - Set delay to 2000ms
+            p - Pause (stop the simulation)
+            f - Finish the simulation
+            h - Show this help
+            """);
     }
 }

@@ -15,11 +15,11 @@ import com.example.conf.TypeObject;
 
 public class Search {
      /**
-     * Поиск в ширину с возвратом пути узлов
-     * @param value Значение узла для поиска
-     * @param startNode Текущий узел с которого будет стартовать поиск
-     * @param map собственно карта
-     * @return списков кратчайшего пути узлов
+     * Breadth first search with return Nodes list path
+     * @param value Value node
+     * @param startNode Current starter link
+     * @param map Rendering map
+     * @return Nodes list path
      */
     public static Optional<List<Node>> findPath(
         TypeObject searchValue,
@@ -33,17 +33,16 @@ public class Search {
         }
 
         Queue<Node> queue = new ArrayDeque<>();
-        Set<Node> alreadyVisited = new HashSet<>();// локальный сет для отслеживания посещаемых узлов
-        Map<Node, Node> parentMap = new HashMap<>(); // хранение родительских узлов: откуда пришли к текущему
+        Set<Node> alreadyVisited = new HashSet<>();// local set from tracking visites nodes
+        Map<Node, Node> parentMap = new HashMap<>(); // storage parent nodesa
 
-        // добавить стартовый узел в очередь и пометить как посещенный
+        // add started node in queue and mark <visited>
         queue.add(startNode);
         alreadyVisited.add(startNode);
 
         while (!queue.isEmpty()) {
             Node currentNode = queue.remove();
 
-            // проверка, является ли текущий узел искомым
             if (currentNode.getType().equals(searchValue)) {
                 return Optional.of(reconstructionPath(parentMap, startNode, currentNode));
             }
@@ -61,19 +60,15 @@ public class Search {
     }
 
     /**
-     * Вспомогательный метод для восстановления пути от целевого узла к стартовому
-     * используя карту родителей
-     *
-     * @param parentMap Карта, где ключ - узел, значение - его родитель в BFS
-     * @param startNode Начальный узел пути
-     * @param endNode Конечный (целевой) узел пути
-     * @return Список узлов, предоставляющий путь от startNode до EndNode
+     * @param parentMap Map,key - node, value - him parrant в BFS
+     * @param startNode Started node path
+     * @param endNode Finaly node path
+     * @return List nodes
      */
     private static List<Node> reconstructionPath(Map<Node, Node> parentMap, Node startNode, Node endNode) {
         List<Node> path = new ArrayList<>();
         Node current = endNode;
 
-        // идем от конечного узла назад к стартовому
         while (current != null && ! current.equals(startNode)) {
             path.add(current);
             current = parentMap.get(current);
@@ -93,15 +88,15 @@ public class Search {
 
     private static boolean isPassable(Node node, TypeObject objectType) {
         TypeObject nodeType = node.getType();
-        // общие припятствия для всех 
+        // common obstacles for each
         if (nodeType == TypeObject.ROCK || nodeType == TypeObject.TREE) {
             return false;
         }
-        // для Herbivore избешать Predator
+        // for Herbivore
         if (objectType == TypeObject.PREDATOR && objectType == TypeObject.HERBIVORE) {
             return false;
         }
-        // для Predator избегать Grass
+        // for Predator
         if (objectType == TypeObject.PREDATOR && nodeType == TypeObject.GRASS) {
             return false;
         }

@@ -3,13 +3,19 @@ package com.example.action.spawn.base;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.example.Entity;
+import com.example.Main;
 import com.example.manage.MapObjectManager;
 import com.example.world_map.Node;
 import com.example.world_map.WordMap;
 
 public class SpawnEngine {
     private final MapObjectManager mapObjectManager;
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
 
     public SpawnEngine(MapObjectManager mapObjectManager) {
         this.mapObjectManager = mapObjectManager;
@@ -37,7 +43,7 @@ public class SpawnEngine {
             }
 
             if (node == null) {
-                System.out.println("Unable to find a suitable cage for the creature. Skipping.");
+                logger.warn("Unable to find a suitable cage for the creature. Skipping.");
                 continue;
             }
 
