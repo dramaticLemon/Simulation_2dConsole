@@ -21,17 +21,28 @@ public class SpawnEngine {
         int count,
         Predicate<Node> spawnRule
     ) {
-
         for (int i = 0; i < count; i++) {
-            Node node;
-            // TODO возможно бесконечный цикл
-            do {
-               node = map.getRundomNode();
-            } while (!spawnRule.test(node));
+            Node node = null;
 
-            T obj = constructor.get(); // получить обьект
+            int attempts = 0;
+            int maxAttempts = 500;
+
+            while (attempts < maxAttempts) {
+                Node candidate = map.getRundomNode();
+                if (spawnRule.test(candidate)) {
+                    node = candidate;
+                    break;
+                }
+                attempts++;
+            }
+
+            if (node == null) {
+                System.out.println("Unable to find a suitable cage for the creature. Skipping.");
+                continue;
+            }
+
+            T obj = constructor.get();
             mapObjectManager.bindObjectToNode(obj, node);
-            
         }
     }
 }

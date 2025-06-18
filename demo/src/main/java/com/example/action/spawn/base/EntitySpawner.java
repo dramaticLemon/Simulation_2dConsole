@@ -4,22 +4,23 @@ import com.example.Entity;
 import com.example.world_map.WordMap;
 
 public interface EntitySpawner {
+
     /**
-     * Спавнит указанное количество сущностей на карте.
-     * @param map Карта мира, где происходит спавн.
-     * @param count Количество сущностей для спавна.
+     * Spawn specified count entity on map.
+     * @param map Game map, where spawner entity.
+     * @param count Count entity from spawn.
      */
     void spawn(WordMap map, int count);
 
     /**
-     * Возвращает минимальное необходимое количество сущностей данного типа.
-     * @return Минимальное количество.
+     * Return minimal count entity current tupe.
+     * @return minimal value.
      */
     int getMinRequiredCount();
 
     /**
-     * Возвращает тип сущности, создаваемой спавнером.
-     * @return Класс сущности.
+     * Returned entity type.
+     * @return entity class.
      */
     Class<? extends Entity> getEntityType();
 }

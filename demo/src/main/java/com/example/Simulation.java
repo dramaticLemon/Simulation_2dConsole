@@ -25,7 +25,7 @@ public class Simulation {
     private volatile boolean stopped = false;
     private int delay = 1000;
 
-     public void stop() {
+    public void stop() {
         stopped = !stopped;
     }
     public void finish() {

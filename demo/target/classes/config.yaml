@@ -1,17 +1,17 @@
 map:
-  width: 25
-  heigth: 25
+  width: 10
+  heigth: 10
 
 entity_count:
-  HERBIVORE: 25
-  ROCK: 150
-  TREE: 150
-  GRASS: 40
-  PREDATOR: 25
+  HERBIVORE: 4
+  ROCK: 12
+  TREE: 12
+  GRASS: 10
+  PREDATOR: 3
 
 entity_char:
   herbivore_hp: 3
   predator_hp: 3
-  herbivore_speed: 1
+  herbivore_speed: 2
   predator_speed: 1
   power_attack_predator: 1

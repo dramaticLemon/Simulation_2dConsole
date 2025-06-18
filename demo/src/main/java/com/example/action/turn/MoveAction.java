@@ -3,8 +3,9 @@ package com.example.action.turn;
 import com.example.Creatures;
 import com.example.manage.EntityManager;
 
-
-// передвинуть все обьекты которые могут ходить
+/**
+ * Moved all creatures object
+ */
 public class MoveAction {
     private final EntityManager entityManager;
 
@@ -13,7 +14,7 @@ public class MoveAction {
     }
 
     public void performMove() {
-        for(Creatures object: entityManager.getAllCreatures() ) {
+        for(Creatures object : entityManager.getAllCreatures() ) {
             object.makeMove();
         }
     }

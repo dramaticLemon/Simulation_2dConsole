@@ -24,6 +24,7 @@ public class Predator extends Creatures{
     public Predator() {
         this.HP = config.getEntityChar().predator_hp;
         this.attackPower = config.getEntityChar().power_attack_predator;
+        this.speed = config.getEntityChar().predator_speed;
     }
 
     public void attack(Creatures obj) {
@@ -37,6 +38,14 @@ public class Predator extends Creatures{
 
     @Override
     public void makeMove () {
+
+        for (int i = 0; i < speed; i++) {
+            if (!isAlive()) return;
+            makeOneStep();
+        }
+    }
+    
+    private void makeOneStep() {
         // получить список всех соседних клеток
         List<Node> possibleMoves = map.getNeighbors(getCurrentNode());
         // получить кратчайший маршрут до указанной клетки карты
@@ -69,5 +78,5 @@ public class Predator extends Creatures{
             Node nextNode = validMoves.get(random.nextInt(validMoves.size()));
             mapObjectManager.moveEntity(this, nextNode);
         }
-    }
+    }        
 }

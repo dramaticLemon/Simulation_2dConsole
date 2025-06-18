@@ -18,14 +18,10 @@ public class Herbivore extends Creatures{
     private final static Config config = ConfigService.get().getConfig(); 
     WordMap map = WordMap.getInstance();
     MapObjectManager mapObjectManager = new MapObjectManager();
-    boolean alived = true;
 
     public Herbivore() {
         this.HP = config.getEntityChar().herbivore_hp;
-    }
-
-    public boolean isAlive() {
-        return this.alived;
+        this.speed = config.getEntityChar().herbivore_speed;
     }
 
     @Override
@@ -40,6 +36,14 @@ public class Herbivore extends Creatures{
 
     @Override
     public void makeMove () {
+
+        for (int i = 0; i < speed; i++) {
+            if (!isAlive()) return;
+            makeOneStep();
+        }
+    }
+
+    private void makeOneStep() {
         // получить список всех соседних клеток
         List<Node> possibleMoves = map.getNeighbors(getCurrentNode());
         // получить кратчайший маршрут до указанной клетки карты
@@ -72,5 +76,6 @@ public class Herbivore extends Creatures{
             mapObjectManager.moveEntity(this, nextNode);
         }
     }
-
 }
+
+
