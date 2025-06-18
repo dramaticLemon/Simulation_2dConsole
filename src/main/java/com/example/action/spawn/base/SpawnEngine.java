@@ -7,14 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.example.Entity;
-import com.example.Main;
 import com.example.manage.MapObjectManager;
 import com.example.world_map.Node;
 import com.example.world_map.WordMap;
 
 public class SpawnEngine {
     private final MapObjectManager mapObjectManager;
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpawnEngine.class);
 
 
     public SpawnEngine(MapObjectManager mapObjectManager) {

@@ -4,18 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.logging.LogRecord;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.Main;
 import com.example.conf.Config;
 import com.example.conf.ConfigService;
 import com.example.conf.TypeObject;
 
 public class  WordMap {
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger(WordMap.class);
     private final int width;
     private final int height;
     private static WordMap instanse;
