@@ -23,3 +23,9 @@
             h - Show this help
             """
 ```
+
+# Запуск проекта 
+```
+mvn clear compile
+mvn exec:java
+```

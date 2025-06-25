@@ -1,3 +1,21 @@
 [10:40:46.584] [INFO ] [main] Main - Start simulation
 [10:40:46.610] [INFO ] [main] Main - Call MAP INNIT
 [10:40:46.617] [INFO ] [main] Main - End simulation
+[10:08:29.357] [INFO ] [main] Main - Start simulation
+[10:08:29.381] [INFO ] [main] WordMap - Call MAP INNIT
+[10:08:29.384] [INFO ] [main] Main - End simulation
+[10:08:41.379] [INFO ] [main] Main - Start simulation
+[10:08:41.403] [INFO ] [main] WordMap - Call MAP INNIT
+[10:08:41.406] [INFO ] [main] Main - End simulation
+[10:20:20.448] [INFO ] [com.example.Main.main()] Main - Start simulation
+[10:20:20.471] [INFO ] [com.example.Main.main()] WordMap - Call MAP INNIT
+[10:20:20.474] [INFO ] [com.example.Main.main()] Main - End simulation
+[10:24:18.453] [INFO ] [com.example.Main.main()] Main - Start simulation
+[10:24:18.476] [INFO ] [com.example.Main.main()] WordMap - Call MAP INNIT
+[10:24:18.479] [INFO ] [com.example.Main.main()] Main - End simulation
+[10:26:53.383] [INFO ] [com.example.Main.main()] Main - Start simulation
+[10:26:53.407] [INFO ] [com.example.Main.main()] WordMap - Call MAP INNIT
+[10:26:53.409] [INFO ] [com.example.Main.main()] Main - End simulation
+[10:27:30.667] [INFO ] [com.example.Main.main()] Main - Start simulation
+[10:27:30.691] [INFO ] [com.example.Main.main()] WordMap - Call MAP INNIT
+[10:27:30.693] [INFO ] [com.example.Main.main()] Main - End simulation
